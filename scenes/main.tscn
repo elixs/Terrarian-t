@@ -9,7 +9,7 @@ extents = Vector2( 128, 16 )
 [node name="Main" type="Node2D"]
 
 [node name="Kevin" parent="." instance=ExtResource( 1 )]
-position = Vector2( 28, 25 )
+position = Vector2( 157, 25 )
 __meta__ = {
 "_edit_group_": true
 }

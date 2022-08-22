@@ -1,12 +1,22 @@
 extends KinematicBody2D
 
+
+
 var velocity = Vector2()
 
-var ACCELERATION = 100
+var ACCELERATION = 1000
 var SPEED = 200
 var JUMP_SPEED = 200
 var GRAVITY = 10
 
+onready var pivot = $Pivot
+onready var anim_player = $AnimationPlayer
+onready var anim_tree = $AnimationTree
+onready var playback = anim_tree.get("parameters/playback")
+
+
+func _ready():
+	anim_tree.active = true
 
 
 func _physics_process(delta):
@@ -24,3 +34,20 @@ func _physics_process(delta):
 		velocity.y = -JUMP_SPEED
 	
 	
+	# Animations
+	
+	if Input.is_action_pressed("move_right") and not Input.is_action_pressed("move_left"):
+		pivot.scale.x = 1
+	if Input.is_action_pressed("move_left") and not Input.is_action_pressed("move_right"):
+		pivot.scale.x = -1
+	
+	if is_on_floor():
+		if abs(velocity.x) > 10:
+			playback.travel("run")
+		else:
+			playback.travel("idle")
+	else:
+		if velocity.y < 0:
+			playback.travel("jump")
+		else:
+			playback.travel("fall")
