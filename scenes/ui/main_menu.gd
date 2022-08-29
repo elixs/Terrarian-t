@@ -11,7 +11,7 @@ func _ready():
 
 
 func _on_play_pressed():
-	get_tree().change_scene("res://scenes/main.tscn")
+	get_tree().change_scene("res://scenes/level_01.tscn")
 
 
 func _on_credits_pressed():

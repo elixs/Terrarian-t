@@ -1,14 +1,14 @@
-[gd_scene load_steps=33 format=2]
+[gd_scene load_steps=34 format=2]
 
 [ext_resource path="res://assets/TeamGunner_By_SecretHideout_060519/CHARACTER_SPRITES/Green/Gunner_Green_Idle.png" type="Texture" id=1]
 [ext_resource path="res://scenes/kevin.gd" type="Script" id=2]
 [ext_resource path="res://assets/TeamGunner_By_SecretHideout_060519/CHARACTER_SPRITES/Green/Gunner_Green_Run.png" type="Texture" id=3]
 [ext_resource path="res://assets/TeamGunner_By_SecretHideout_060519/CHARACTER_SPRITES/Green/Gunner_Green_Crouch.png" type="Texture" id=4]
 [ext_resource path="res://assets/TeamGunner_By_SecretHideout_060519/CHARACTER_SPRITES/Green/Gunner_Green_Jump.png" type="Texture" id=5]
+[ext_resource path="res://assets/sfx/laser.mp3" type="AudioStream" id=6]
 
-[sub_resource type="CapsuleShape2D" id=1]
-radius = 4.0
-height = 22.0
+[sub_resource type="CircleShape2D" id=29]
+radius = 6.0
 
 [sub_resource type="Animation" id=2]
 length = 0.001
@@ -398,12 +398,12 @@ script = ExtResource( 2 )
 
 [node name="Sprite" type="Sprite" parent="Pivot"]
 modulate = Color( 0, 1, 0, 1 )
-position = Vector2( 2, 0 )
+position = Vector2( 2, -9 )
 texture = ExtResource( 1 )
 hframes = 5
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
-shape = SubResource( 1 )
+shape = SubResource( 29 )
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
 anims/RESET = SubResource( 2 )
@@ -418,3 +418,6 @@ anims/run = SubResource( 4 )
 tree_root = SubResource( 9 )
 anim_player = NodePath("../AnimationPlayer")
 parameters/playback = SubResource( 10 )
+
+[node name="FireSFX" type="AudioStreamPlayer" parent="."]
+stream = ExtResource( 6 )
