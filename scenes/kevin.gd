@@ -1,6 +1,7 @@
 extends KinematicBody2D
 
-
+#var Bullet = preload("res://scenes/bullet.tscn")
+export(PackedScene) var Bullet
 
 var velocity = Vector2()
 
@@ -14,6 +15,7 @@ onready var anim_player = $AnimationPlayer
 onready var anim_tree = $AnimationTree
 onready var playback = anim_tree.get("parameters/playback")
 onready var fire_sfx = $FireSFX
+onready var bullet_spawn = $Pivot/BulletSpawn
 
 func _ready():
 	anim_tree.active = true
@@ -37,8 +39,8 @@ func _physics_process(delta):
 #		velocity.y = -JUMP_SPEED
 	
 	
-	if Input.is_action_just_pressed("fire"):\
-		fire_sfx.play()
+	if Input.is_action_just_pressed("fire"):
+		_fire()
 	
 	# Animations
 	
@@ -57,3 +59,12 @@ func _physics_process(delta):
 #			playback.travel("jump")
 #		else:
 #			playback.travel("fall")
+
+func _fire():
+	fire_sfx.play()
+	var bullet = Bullet.instance()
+	get_parent().add_child(bullet)
+	bullet.global_position = bullet_spawn.global_position
+	if pivot.scale.x == -1:
+		bullet.rotation = PI
+	
