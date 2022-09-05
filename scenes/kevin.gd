@@ -5,6 +5,7 @@ export(PackedScene) var Bullet
 
 var velocity = Vector2()
 
+
 var ACCELERATION = 1000
 var SPEED = 200
 var JUMP_SPEED = 200
@@ -17,11 +18,17 @@ onready var playback = anim_tree.get("parameters/playback")
 onready var fire_sfx = $FireSFX
 onready var bullet_spawn = $Pivot/BulletSpawn
 
+onready var hud = $CanvasLayer/HUD
+
+
+
 func _ready():
 	anim_tree.active = true
 
 
 func _physics_process(delta):
+	# movement
+	
 	velocity = move_and_slide(velocity, Vector2.UP)
 	
 	var move_input = Vector2(
@@ -42,7 +49,22 @@ func _physics_process(delta):
 	if Input.is_action_just_pressed("fire"):
 		_fire()
 	
-	# Animations
+	if Input.is_action_just_pressed("dash"):
+		var direction = (get_global_mouse_position() - global_position).normalized()
+		velocity = direction * SPEED * 2
+	
+	
+	for i in get_slide_count():
+		var collision = get_slide_collision(i)
+		
+		if collision.collider.collision_layer & 4:
+			var enemy: Node2D = collision.collider
+			var direction = (global_position - enemy.global_position).normalized()
+			velocity = direction * SPEED * 2
+			hud.lives -= 1
+			
+	
+	# animations
 	
 	if Input.is_action_pressed("move_right") and not Input.is_action_pressed("move_left"):
 		pivot.scale.x = 1
