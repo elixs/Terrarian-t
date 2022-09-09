@@ -1,19 +1,10 @@
-[gd_scene load_steps=5 format=2]
+[gd_scene load_steps=2 format=2]
 
-[ext_resource path="res://resources/theme.tres" type="Theme" id=1]
-[ext_resource path="res://assets/fonts/Quaver v1.0/quaver.ttf" type="DynamicFontData" id=2]
 [ext_resource path="res://scenes/ui/main_menu.gd" type="Script" id=3]
-
-[sub_resource type="DynamicFont" id=1]
-size = 32
-outline_size = 4
-outline_color = Color( 0, 0, 0, 1 )
-font_data = ExtResource( 2 )
 
 [node name="MainMenu" type="MarginContainer"]
 anchor_right = 1.0
 anchor_bottom = 1.0
-theme = ExtResource( 1 )
 script = ExtResource( 3 )
 
 [node name="VBoxContainer" type="VBoxContainer" parent="."]
@@ -26,7 +17,7 @@ size_flags_vertical = 4
 [node name="Label" type="Label" parent="VBoxContainer"]
 margin_right = 270.0
 margin_bottom = 32.0
-custom_fonts/font = SubResource( 1 )
+theme_type_variation = "BigLabel"
 text = "Terrarian't"
 align = 1
 
