@@ -10,6 +10,7 @@ var ACCELERATION = 1000
 var SPEED = 200
 var JUMP_SPEED = 200
 var GRAVITY = 10
+var KICK_IMPULSE = 1
 
 onready var pivot = $Pivot
 onready var anim_player = $AnimationPlayer
@@ -29,11 +30,11 @@ func _ready():
 func _physics_process(delta):
 	# movement
 	
-	velocity = move_and_slide(velocity, Vector2.UP)
+	velocity = move_and_slide(velocity, Vector2.ZERO, false, 4, PI/4, false)
 	
-	var move_input = Vector2(
-		Input.get_axis("move_left", "move_right"),
-		Input.get_axis("move_up", "move_down")
+	var move_input = Input.get_vector(
+		"move_left", "move_right",
+		"move_up", "move_down"
 	).normalized()
 	
 	# velocity.x = lerp(move_input * SPEED, velocity.x, 0.99) 
@@ -53,6 +54,13 @@ func _physics_process(delta):
 		var direction = (get_global_mouse_position() - global_position).normalized()
 		velocity = direction * SPEED * 2
 	
+	var last_collision = get_last_slide_collision()
+	if last_collision:
+		var collider = last_collision.collider
+		if collider is Ball:
+			var ball: Ball = collider
+			var normal = last_collision.normal
+			ball.apply_central_impulse(-normal * KICK_IMPULSE * velocity.length())
 	
 	for i in get_slide_count():
 		var collision = get_slide_collision(i)
