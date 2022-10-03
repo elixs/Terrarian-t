@@ -1,0 +1,26 @@
+{
+  "wood": {
+    "display_name": "Mystic Wood",
+    "icon": {
+      "x": 0,
+      "y": 0
+    },
+    "stack_size": 4
+  },
+  "ruby": {
+    "display_name": "Ruby",
+    "icon": {
+      "x": 0,
+      "y": 48
+    },
+    "stack_size": 1
+  },
+  "chilli": {
+    "display_name": "Chilli Pepper",
+    "icon": {
+      "x": 24,
+      "y": 144
+    },
+    "stack_size": 32
+  }
+}

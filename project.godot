@@ -27,6 +27,7 @@ config/icon="res://icon.png"
 [autoload]
 
 Game="*res://scenes/game.tscn"
+DB="*res://data/db.gd"
 
 [display]
 
