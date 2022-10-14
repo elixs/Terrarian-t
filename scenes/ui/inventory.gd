@@ -29,6 +29,9 @@ func _update():
 	for item in inventory:
 		var ui_item = item_scene.instance()
 		items.add_child(ui_item)
-		ui_item.display_name = item.display_name
 		
+		# {display_name, icon: {x, y}, stack_size}
+		var item_data = DB.inventory_data[item.item]
+		ui_item.display_name = item_data.display_name
+		ui_item.icon = item_data.icon
 		ui_item.quantity = item.quantity

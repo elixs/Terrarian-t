@@ -4,6 +4,7 @@ var inventory_data = {}
 
 
 func _ready():
+	print("load_db")
 	load_db()
 
 
@@ -12,4 +13,4 @@ func load_db():
 	file.open("res://data/db.json", File.READ)
 	var content = file.get_as_text()
 	file.close()
-	var inventory_data = JSON.parse(content).result
+	inventory_data = JSON.parse(content).result
