@@ -2,6 +2,7 @@ extends KinematicBody2D
 
 #var Bullet = preload("res://scenes/bullet.tscn")
 export(PackedScene) var Bullet
+export(PackedScene) var Smoke
 
 var velocity = Vector2()
 
@@ -18,6 +19,7 @@ onready var anim_tree = $AnimationTree
 onready var playback = anim_tree.get("parameters/playback")
 onready var fire_sfx = $FireSFX
 onready var bullet_spawn = $Pivot/BulletSpawn
+
 
 onready var hud = $CanvasLayer/HUD
 
@@ -97,4 +99,6 @@ func _fire():
 	bullet.global_position = bullet_spawn.global_position
 	if pivot.scale.x == -1:
 		bullet.rotation = PI
-	
+	var smoke = Smoke.instance()
+	bullet_spawn.add_child(smoke)
+	smoke.emitting = true
