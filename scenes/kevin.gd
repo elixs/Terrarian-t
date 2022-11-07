@@ -1,3 +1,4 @@
+class_name Player
 extends KinematicBody2D
 
 #var Bullet = preload("res://scenes/bullet.tscn")

@@ -4,6 +4,8 @@ onready var play = $VBoxContainer/Play
 onready var credits = $VBoxContainer/Credits
 onready var exit = $VBoxContainer/Exit
 
+export(PackedScene) var first_level
+
 func _ready():
 	play.connect("pressed", self, "_on_play_pressed")
 	credits.connect("pressed", self, "_on_credits_pressed")
@@ -16,7 +18,7 @@ func _ready():
 
 
 func _on_play_pressed():
-	get_tree().change_scene("res://scenes/level_01.tscn")
+	Fade.change_scene(first_level)
 
 
 func _on_credits_pressed():
