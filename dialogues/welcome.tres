@@ -1,0 +1,143 @@
+[gd_resource type="Resource" load_steps=2 format=2]
+
+[ext_resource path="res://addons/dialogue_manager/dialogue_resource.gd" type="Script" id=1]
+
+[resource]
+script = ExtResource( 1 )
+resource_version = 13
+syntax_version = 2
+raw_text = "~ welcome
+
+do stop_player(true)
+Godot NPC: It's dangerous to go alone!
+Godot NPC: Take this.
+- I don't wanna!
+	Godot NPC: · o ·)
+	do game_over()
+- Ok
+	set player_lives = 3
+	Godot NPC: Good luck!
+do stop_player(false)"
+errors = [  ]
+titles = {
+"welcome": "2"
+}
+lines = {
+"0": {
+"next_id": "2",
+"text": "welcome",
+"type": "title"
+},
+"10": {
+"character": "Godot NPC",
+"character_replacements": [  ],
+"next_id": "11",
+"parent_id": "8",
+"replacements": [  ],
+"text": "Good luck!",
+"translation_key": "Good luck!",
+"type": "dialogue"
+},
+"11": {
+"mutation": {
+"expression": [ {
+"function": "stop_player",
+"type": "function",
+"value": [ [ {
+"type": "bool",
+"value": false
+} ] ]
+} ]
+},
+"next_id": "",
+"type": "mutation"
+},
+"2": {
+"mutation": {
+"expression": [ {
+"function": "stop_player",
+"type": "function",
+"value": [ [ {
+"type": "bool",
+"value": true
+} ] ]
+} ]
+},
+"next_id": "3",
+"type": "mutation"
+},
+"3": {
+"character": "Godot NPC",
+"character_replacements": [  ],
+"next_id": "4",
+"replacements": [  ],
+"text": "It's dangerous to go alone!",
+"translation_key": "It's dangerous to go alone!",
+"type": "dialogue"
+},
+"4": {
+"character": "Godot NPC",
+"character_replacements": [  ],
+"next_id": "5",
+"replacements": [  ],
+"text": "Take this.",
+"translation_key": "Take this.",
+"type": "dialogue"
+},
+"5": {
+"next_id": "6",
+"next_id_after": "11",
+"replacements": [  ],
+"responses": PoolStringArray( "5", "8" ),
+"text": "I don't wanna!",
+"translation_key": "I don't wanna!",
+"type": "response"
+},
+"6": {
+"character": "Godot NPC",
+"character_replacements": [  ],
+"next_id": "7",
+"parent_id": "5",
+"replacements": [  ],
+"text": "· o ·)",
+"translation_key": "· o ·)",
+"type": "dialogue"
+},
+"7": {
+"mutation": {
+"expression": [ {
+"function": "game_over",
+"type": "function",
+"value": [  ]
+} ]
+},
+"next_id": "11",
+"parent_id": "5",
+"type": "mutation"
+},
+"8": {
+"next_id": "9",
+"next_id_after": "11",
+"replacements": [  ],
+"text": "Ok",
+"translation_key": "Ok",
+"type": "response"
+},
+"9": {
+"mutation": {
+"expression": [ {
+"type": "variable",
+"value": "player_lives"
+}, {
+"type": "assignment",
+"value": "="
+}, {
+"type": "number",
+"value": 3
+} ]
+},
+"next_id": "10",
+"parent_id": "8",
+"type": "mutation"
+}
+}

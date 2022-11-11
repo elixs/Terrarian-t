@@ -24,10 +24,11 @@ onready var bullet_spawn = $Pivot/BulletSpawn
 
 onready var hud = $CanvasLayer/HUD
 
-
+var can_move = true
 
 func _ready():
 	anim_tree.active = true
+	Game.player = self
 
 
 func _physics_process(delta):
@@ -39,6 +40,9 @@ func _physics_process(delta):
 		"move_left", "move_right",
 		"move_up", "move_down"
 	).normalized()
+	
+	if not can_move:
+		move_input = Vector2.ZERO
 	
 	# velocity.x = lerp(move_input * SPEED, velocity.x, 0.99) 
 	velocity = velocity.move_toward(move_input * SPEED, ACCELERATION * delta)
@@ -72,7 +76,7 @@ func _physics_process(delta):
 			var enemy: Node2D = collision.collider
 			var direction = (global_position - enemy.global_position).normalized()
 			velocity = direction * SPEED * 2
-			hud.lives -= 1
+			Game.lives -= 1
 			
 	
 	# animations

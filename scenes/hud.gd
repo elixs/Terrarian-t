@@ -14,4 +14,3 @@ func _ready():
 func set_lives(value):
 	lives = value
 	lives_label.text = "Lives: %d" % lives
-	Game.player_lives = lives
