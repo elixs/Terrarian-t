@@ -76,7 +76,7 @@ func _physics_process(delta):
 			var enemy: Node2D = collision.collider
 			var direction = (global_position - enemy.global_position).normalized()
 			velocity = direction * SPEED * 2
-			Game.lives -= 1
+			Game.player_lives -= 1
 			
 	
 	# animations
