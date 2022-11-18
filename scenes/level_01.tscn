@@ -254,11 +254,12 @@ tile_data = PoolIntArray( 65524, 2, 0, 65525, 2, 1, 65526, 2, 1, 65527, 2, 1, 65
 
 [node name="YSort" type="YSort" parent="."]
 
-[node name="Kevin2" parent="YSort" instance=ExtResource( 2 )]
+[node name="Kevin" parent="YSort" instance=ExtResource( 2 )]
 position = Vector2( 80, 95 )
 
 [node name="Lebin" parent="YSort" instance=ExtResource( 5 )]
 position = Vector2( 225, 112 )
+player = NodePath("../Kevin")
 
 [node name="OneWay" type="StaticBody2D" parent="YSort"]
 position = Vector2( 122, 63 )
