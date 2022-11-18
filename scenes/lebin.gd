@@ -30,15 +30,7 @@ func take_damage():
 
 func _physics_process(delta):
 	
-	
-	
 	velocity = move_and_slide(velocity)
-
-#	var distance = (target - global_position).length()
-#	if distance < SPEED * delta:
-#		has_target = false
-#		emit_signal("target_reached")
-#		direction = Vector2.ZERO
 	
 	direction = (agent.get_next_location() - global_position).normalized()
 #	direction = global_position.direction_to(agent.get_next_location())
